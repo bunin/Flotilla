@@ -11,7 +11,7 @@ const topic = "test"
 // Peer implements the peer interface for Kafka.
 type Peer struct {
 	client   *sarama.Client
-	producer *sarama.Producer
+	producer *sarama.AsyncProducer
 	consumer *sarama.Consumer
 	send     chan []byte
 	errors   chan error
@@ -26,7 +26,7 @@ func NewPeer(host string) (*Peer, error) {
 		return nil, err
 	}
 
-	producer, err := sarama.NewProducer(client, nil)
+	producer, err := sarama.NewAsyncProducer(client, nil)
 	if err != nil {
 		return nil, err
 	}
