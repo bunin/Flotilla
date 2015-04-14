@@ -21,7 +21,7 @@ type Peer struct {
 // NewPeer creates and returns a new Peer for communicating with Kafka.
 func NewPeer(host string) (*Peer, error) {
 	host = strings.Split(host, ":")[0] + ":9092"
-	client, err := sarama.NewClient("producer", []string{host}, sarama.NewClientConfig())
+	client, err := sarama.NewClient([]string{host}, sarama.NewConfig())
 	if err != nil {
 		return nil, err
 	}
