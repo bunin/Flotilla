@@ -26,7 +26,7 @@ func NewPeer(host string) (*Peer, error) {
 		return nil, err
 	}
 
-	producer, err := sarama.NewAsyncProducer(client, nil)
+	producer, err := sarama.NewAsyncProducer([]string{host}, sarama.NewConfig())
 	if err != nil {
 		return nil, err
 	}
