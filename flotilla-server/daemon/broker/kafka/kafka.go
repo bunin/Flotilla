@@ -3,7 +3,7 @@ package kafka
 import (
 	"strings"
 
-	"gopkg.in/Shopify/sarama.v1"
+	"github.com/Shopify/sarama"
 )
 
 const topic = "test"
@@ -11,7 +11,7 @@ const topic = "test"
 // Peer implements the peer interface for Kafka.
 type Peer struct {
 	client   *sarama.Client
-	producer *sarama.AsyncProducer
+	producer *sarama.Producer
 	consumer *sarama.Consumer
 	send     chan []byte
 	errors   chan error
@@ -21,12 +21,12 @@ type Peer struct {
 // NewPeer creates and returns a new Peer for communicating with Kafka.
 func NewPeer(host string) (*Peer, error) {
 	host = strings.Split(host, ":")[0] + ":9092"
-	client, err := sarama.NewClient([]string{host}, sarama.NewConfig())
+	client, err := sarama.NewClient("producer", []string{host}, sarama.NewClientConfig())
 	if err != nil {
 		return nil, err
 	}
 
-	producer, err := sarama.NewAsyncProducer([]string{host}, sarama.NewConfig())
+	producer, err := sarama.NewProducer(client, nil)
 	if err != nil {
 		return nil, err
 	}
