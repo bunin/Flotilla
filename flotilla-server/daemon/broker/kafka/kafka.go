@@ -3,7 +3,7 @@ package kafka
 import (
 	"strings"
 
-	"github.com/Shopify/sarama"
+	"github.com/davidgev/sarama"
 )
 
 const topic = "test"

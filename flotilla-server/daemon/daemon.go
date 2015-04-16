@@ -13,7 +13,7 @@ import (
 	"github.com/tylertreat/Flotilla/flotilla-server/daemon/broker/amqp"
 	"github.com/tylertreat/Flotilla/flotilla-server/daemon/broker/amqp/rabbitmq"
 	"github.com/tylertreat/Flotilla/flotilla-server/daemon/broker/beanstalkd"
-	"github.com/tylertreat/Flotilla/flotilla-server/daemon/broker/kafka"
+	"github.com/davidgev/Flotilla/flotilla-server/daemon/broker/kafka"
 	"github.com/tylertreat/Flotilla/flotilla-server/daemon/broker/kestrel"
 	"github.com/tylertreat/Flotilla/flotilla-server/daemon/broker/nats"
 	"github.com/tylertreat/Flotilla/flotilla-server/daemon/broker/nsq"
