@@ -354,6 +354,8 @@ func sendRequest(s mangos.Socket, request request) (*response, error) {
 		panic(err)
 	}
 
+	fmt.Printf("sendRequest: %s\n", requestJSON)
+
 	if err := s.Send(requestJSON); err != nil {
 		return nil, err
 	}

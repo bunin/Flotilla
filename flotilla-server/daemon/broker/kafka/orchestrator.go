@@ -36,7 +36,7 @@ func (k *Broker) Start(host, port string) (interface{}, error) {
 
 	cmd := fmt.Sprintf(zookeeperCmd, zookeeperPort, zookeeperPort, zookeeper)
 
-	log.Printf("Command to start Zookeeper %s", cmd)
+	log.Printf("Command to start Zookeeper: %s", cmd)
 
 	zkContainerID, err := exec.Command("/bin/sh", "-c", cmd).Output()
 	if err != nil {
@@ -47,7 +47,7 @@ func (k *Broker) Start(host, port string) (interface{}, error) {
 
 	cmd = fmt.Sprintf(kafkaCmd, host, kafkaPort, kafkaPort, jmxPort, jmxPort, host, host, kafka)
 
-	log.Printf("Command to start Kafka %s", cmd)
+	log.Printf("Command to start Kafka: %s", cmd)
 
 	kafkaContainerID, err := exec.Command("/bin/sh", "-c", cmd).Output()
 	if err != nil {
