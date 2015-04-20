@@ -11,7 +11,7 @@ const (
 	zookeeper     = "jplock/zookeeper:3.4.6"
 	zookeeperCmd  = "docker run -d -p %s:%s %s"
 	zookeeperPort = "2181"
-	kafka         = "ches/kafka"
+	kafka         = "wurstmeister/kafka"
 	kafkaPort     = "9092"
 	jmxPort       = "7203"
 	// TODO: Use --link.
