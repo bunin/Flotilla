@@ -14,7 +14,7 @@ import (
 	"github.com/davidgev/Flotilla/flotilla-server/daemon/broker/amqp/rabbitmq"
 	"github.com/davidgev/Flotilla/flotilla-server/daemon/broker/beanstalkd"
 	"github.com/davidgev/Flotilla/flotilla-server/daemon/broker/kafka"
-	"github.com/davidgev/Flotilla/flotilla-server/daemon/broker/kestrel"
+//	"github.com/davidgev/Flotilla/flotilla-server/daemon/broker/kestrel"
 	"github.com/davidgev/Flotilla/flotilla-server/daemon/broker/nats"
 	"github.com/davidgev/Flotilla/flotilla-server/daemon/broker/nsq"
 	"github.com/davidgev/Flotilla/flotilla-server/daemon/broker/pubsub"
