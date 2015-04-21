@@ -224,8 +224,8 @@ func (d *Daemon) processBrokerStart(broker, host, port string) (interface{}, err
 		d.broker = &beanstalkd.Broker{}
 	case Kafka:
 		d.broker = &kafka.Broker{}
-	case Kestrel:
-		d.broker = &kestrel.Broker{}
+//	case Kestrel:
+//		d.broker = &kestrel.Broker{}
 	case ActiveMQ:
 		d.broker = &activemq.Broker{}
 	case RabbitMQ:
@@ -353,8 +353,8 @@ func (d *Daemon) newPeer(broker, host string) (peer, error) {
 		return beanstalkd.NewPeer(host)
 	case Kafka:
 		return kafka.NewPeer(host)
-	case Kestrel:
-		return kestrel.NewPeer(host)
+//	case Kestrel:
+//		return kestrel.NewPeer(host)
 	case ActiveMQ:
 		return activemq.NewPeer(host)
 	case RabbitMQ:
