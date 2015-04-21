@@ -216,26 +216,15 @@ func (c *Client) startBroker() error {
 		Port:      c.Benchmark.BrokerPort,
 	})
 
-	if !resp.Success {
-		fmt.Errorf("Got an error during start, but ignoring for now ... %s:", resp.Message)
-    }
-
-	// Hard coded for now, since Kafka seems to have started properly.
 	if err != nil {
-		return nil
+		return err
+	}
+
+	if !resp.Success {
+		return errors.New(resp.Message)
 	}
 
 	return nil
-
-//	if err != nil {
-//		return err
-//	}
-//
-//	if !resp.Success {
-//		return errors.New(resp.Message)
-//	}
-//
-//	return nil
 }
 
 func (c *Client) startSubscribers() error {

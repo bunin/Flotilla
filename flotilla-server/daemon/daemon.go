@@ -245,6 +245,7 @@ func (d *Daemon) processBrokerStart(broker, host, port string) (interface{}, err
 	if err != nil {
 		d.broker = nil
 	}
+
 	return result, err
 }
 
