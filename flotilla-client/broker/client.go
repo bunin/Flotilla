@@ -221,6 +221,10 @@ func (c *Client) startBroker() error {
     }
 
 	// Hard coded for now, since Kafka seems to have started properly.
+	if err != nil {
+		return nil
+	}
+
 	return nil
 
 //	if err != nil {
