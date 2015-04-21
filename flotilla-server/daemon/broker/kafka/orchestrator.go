@@ -65,6 +65,8 @@ func (k *Broker) Start(host, port string) (interface{}, error) {
 	// better?
 	time.Sleep(time.Minute)
 
+	log.Println("Kafka seems to have started")
+
 	return string(kafkaContainerID), nil
 }
 
