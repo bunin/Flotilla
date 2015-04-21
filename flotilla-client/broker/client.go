@@ -348,6 +348,8 @@ func (c *Client) stopBroker() error {
 }
 
 func sendRequest(s mangos.Socket, request request) (*response, error) {
+	fmt.Println("Sending a request")
+
 	requestJSON, err := json.Marshal(request)
 	if err != nil {
 		// This is not recoverable.
