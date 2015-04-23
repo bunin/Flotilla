@@ -3,6 +3,7 @@ package kafka
 import (
 	"strings"
 	"log"
+	"os"
 
 	"github.com/davidgev/sarama"
 )
