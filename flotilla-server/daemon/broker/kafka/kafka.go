@@ -14,7 +14,6 @@ type Peer struct {
 	client   *sarama.Client
 	producer *sarama.Producer
 	consumer *sarama.Consumer
-	logger   *sarama.Logger
 	send     chan []byte
 	errors   chan error
 	done     chan bool
@@ -22,7 +21,7 @@ type Peer struct {
 
 // NewPeer creates and returns a new Peer for communicating with Kafka.
 func NewPeer(host string) (*Peer, error) {
-	logger = log.New(os.Stdout,
+	sarama.Logger = log.New(os.Stdout,
         "DEBUG: ",
         log.Ldate|log.Ltime|log.Lshortfile)
 
