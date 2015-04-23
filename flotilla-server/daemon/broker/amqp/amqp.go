@@ -22,7 +22,7 @@ type Peer struct {
 
 // NewPeer creates and returns a new Peer for communicating with AMQP brokers.
 func NewPeer(host string) (*Peer, error) {
-	conn, err := amqp.Dial("amqp://" + host)
+	conn, err := amqp.Dial("amqp://guest:guest@" + host)
 	if err != nil {
 		return nil, err
 	}
