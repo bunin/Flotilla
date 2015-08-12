@@ -35,13 +35,13 @@ Flotilla consists of two binaries: the server daemon and client. The daemon runs
 To install the daemon, run:
 
 ```bash
-$ go get github.com/davidgev/flotilla/flotilla-server
+$ go get github.com/bunin/flotilla/flotilla-server
 ```
 
 To install the client, run:
 
 ```bash
-$ go get github.com/davidgev/flotilla/flotilla-client
+$ go get github.com/bunin/flotilla/flotilla-client
 ```
 
 ## Usage

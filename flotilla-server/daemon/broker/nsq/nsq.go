@@ -1,9 +1,6 @@
 package nsq
 
-import (
-	"github.com/bitly/go-nsq"
-	"github.com/davidgev/Flotilla/flotilla-server/daemon/broker"
-)
+import "github.com/bunin/Flotilla/flotilla-server/daemon/broker"
 
 const (
 	topic = "test"

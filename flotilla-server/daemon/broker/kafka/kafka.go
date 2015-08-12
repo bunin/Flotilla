@@ -1,11 +1,11 @@
 package kafka
 
 import (
-	"strings"
 	"log"
 	"os"
+	"strings"
 
-	"github.com/davidgev/sarama"
+	"github.com/bunin/sarama"
 )
 
 const topic = "test"
@@ -23,8 +23,8 @@ type Peer struct {
 // NewPeer creates and returns a new Peer for communicating with Kafka.
 func NewPeer(host string) (*Peer, error) {
 	sarama.Logger = log.New(os.Stdout,
-        "DEBUG: ",
-        log.Ldate|log.Ltime|log.Lshortfile)
+		"DEBUG: ",
+		log.Ldate|log.Ltime|log.Lshortfile)
 
 	host = strings.Split(host, ":")[0] + ":9092"
 	client, err := sarama.NewClient("producer", []string{host}, sarama.NewClientConfig())
