@@ -11,13 +11,13 @@ import (
 	"github.com/bunin/Flotilla/flotilla-server/daemon/broker/amqp/rabbitmq"
 	"github.com/bunin/Flotilla/flotilla-server/daemon/broker/beanstalkd"
 	"github.com/bunin/Flotilla/flotilla-server/daemon/broker/kafka"
-	"github.com/gdamore/mangos"
-	"github.com/gdamore/mangos/protocol/rep"
-	"github.com/gdamore/mangos/transport/tcp"
-	//	"github.com/bunin/Flotilla/flotilla-server/daemon/broker/kestrel"
+	"github.com/bunin/Flotilla/flotilla-server/daemon/broker/kestrel"
 	"github.com/bunin/Flotilla/flotilla-server/daemon/broker/nats"
 	"github.com/bunin/Flotilla/flotilla-server/daemon/broker/nsq"
 	"github.com/bunin/Flotilla/flotilla-server/daemon/broker/pubsub"
+	"github.com/gdamore/mangos"
+	"github.com/gdamore/mangos/protocol/rep"
+	"github.com/gdamore/mangos/transport/tcp"
 )
 
 type daemon string
@@ -224,8 +224,8 @@ func (d *Daemon) processBrokerStart(broker, host, port string) (interface{}, err
 		d.broker = &beanstalkd.Broker{}
 	case Kafka:
 		d.broker = &kafka.Broker{}
-		//	case Kestrel:
-		//		d.broker = &kestrel.Broker{}
+	case Kestrel:
+		d.broker = &kestrel.Broker{}
 	case ActiveMQ:
 		d.broker = &activemq.Broker{}
 	case RabbitMQ:
@@ -354,8 +354,8 @@ func (d *Daemon) newPeer(broker, host string) (peer, error) {
 		return beanstalkd.NewPeer(host)
 	case Kafka:
 		return kafka.NewPeer(host)
-		//	case Kestrel:
-		//		return kestrel.NewPeer(host)
+	case Kestrel:
+		return kestrel.NewPeer(host)
 	case ActiveMQ:
 		return activemq.NewPeer(host)
 	case RabbitMQ:

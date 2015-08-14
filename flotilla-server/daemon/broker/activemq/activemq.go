@@ -1,6 +1,6 @@
 package activemq
 
-import "gopkg.in/stomp.v1"
+import stomp "gopkg.in/stomp.v1"
 
 const queue = "test"
 

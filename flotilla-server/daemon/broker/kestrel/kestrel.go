@@ -5,7 +5,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/alindeman/go-kestrel"
+	gk "github.com/alindeman/go-kestrel"
 )
 
 const (
@@ -18,7 +18,7 @@ const (
 
 // Peer implements the peer interface for Kestrel.
 type Peer struct {
-	client     *kestrel.Client
+	client     *gk.Client
 	messages   chan []byte
 	send       chan []byte
 	errors     chan error
@@ -39,7 +39,7 @@ func NewPeer(host string) (*Peer, error) {
 		return nil, err
 	}
 
-	client := kestrel.NewClient(addrAndPort[0], port)
+	client := gk.NewClient(addrAndPort[0], port)
 	if err := client.FlushAllQueues(); err != nil {
 		client.Close()
 		return nil, err

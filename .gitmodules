@@ -1,0 +1,3 @@
+[submodule "flotilla-server/daemon/broker/kafka/kafka-docker"]
+	path = flotilla-server/daemon/broker/kafka/kafka-docker
+	url = https://github.com/bunin/kafka-docker
