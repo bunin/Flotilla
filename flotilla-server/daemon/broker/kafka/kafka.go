@@ -13,7 +13,7 @@ const topic = "test"
 // Peer implements the peer interface for Kafka.
 type Peer struct {
 	client   sarama.Client
-	producer sarama.AsyncProducer
+	producer sarama.SyncProducer
 	consumer sarama.PartitionConsumer
 	send     chan []byte
 	errors   chan error
@@ -32,7 +32,7 @@ func NewPeer(host string) (*Peer, error) {
 		return nil, err
 	}
 
-	producer, err := sarama.NewAsyncProducerFromClient(client)
+	producer, err := sarama.NewSyncProducerFromClient(client)
 	if err != nil {
 		return nil, err
 	}
@@ -52,7 +52,7 @@ func (k *Peer) Subscribe() error {
 	if err != nil {
 		return err
 	}
-	pc, err := consumer.ConsumePartition(topic, 0, sarama.OffsetOldest)
+	pc, err := consumer.ConsumePartition(topic, 0, sarama.OffsetNewest)
 	if nil != err {
 		return err
 	}
@@ -104,11 +104,10 @@ func (k *Peer) Setup() {
 }
 
 func (k *Peer) sendMessage(message []byte) error {
-	select {
-	case k.producer.Input() <- &sarama.ProducerMessage{Topic: topic, Key: nil, Value: sarama.ByteEncoder(message)}:
-		return nil
-	case err := <-k.producer.Errors():
-		return err.Err
+	msg := &sarama.ProducerMessage{Topic: topic, Key: nil, Value: sarama.ByteEncoder(message)}
+	_, _, err := k.producer.SendMessage(msg)
+	if nil != err {
+		return err
 	}
 	return nil
 }

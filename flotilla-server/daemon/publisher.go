@@ -22,13 +22,14 @@ func (p *publisher) start() {
 	defer p.Done()
 
 	var (
+		message []byte
 		send    = p.Send()
 		errors  = p.Errors()
-		message = make([]byte, p.messageSize)
 		start   = time.Now().UnixNano()
 	)
 
 	for i := 0; i < p.numMessages; i++ {
+		message = make([]byte, p.messageSize)
 		binary.PutVarint(message, time.Now().UnixNano())
 		select {
 		case send <- message:

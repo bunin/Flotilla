@@ -34,10 +34,9 @@ const (
 
 // These are supported message brokers.
 const (
-	NATS       = "nats"
-	Beanstalkd = "beanstalkd"
-	Kafka      = "kafka"
-	//	Kestrel     = "kestrel"
+	NATS        = "nats"
+	Beanstalkd  = "beanstalkd"
+	Kafka       = "kafka"
 	ActiveMQ    = "activemq"
 	RabbitMQ    = "rabbitmq"
 	NSQ         = "nsq"
@@ -353,8 +352,6 @@ func (d *Daemon) newPeer(broker, host string) (peer, error) {
 		return beanstalkd.NewPeer(host)
 	case Kafka:
 		return kafka.NewPeer(host)
-		//	case Kestrel:
-		//		return kestrel.NewPeer(host)
 	case ActiveMQ:
 		return activemq.NewPeer(host)
 	case RabbitMQ:
