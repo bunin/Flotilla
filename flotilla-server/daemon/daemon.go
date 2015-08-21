@@ -14,6 +14,7 @@ import (
 	"github.com/bunin/Flotilla/flotilla-server/daemon/broker/nats"
 	"github.com/bunin/Flotilla/flotilla-server/daemon/broker/nsq"
 	"github.com/bunin/Flotilla/flotilla-server/daemon/broker/pubsub"
+	"github.com/bunin/Flotilla/flotilla-server/daemon/broker/rethinkdb"
 	"github.com/gdamore/mangos"
 	"github.com/gdamore/mangos/protocol/rep"
 	"github.com/gdamore/mangos/transport/tcp"
@@ -41,6 +42,7 @@ const (
 	RabbitMQ    = "rabbitmq"
 	NSQ         = "nsq"
 	CloudPubSub = "pubsub"
+	RethinkDB   = "rethinkdb"
 )
 
 type request struct {
@@ -235,6 +237,8 @@ func (d *Daemon) processBrokerStart(broker, host, port string) (interface{}, err
 			ProjectID: d.config.GoogleCloudProjectID,
 			JSONKey:   d.config.GoogleCloudJSONKey,
 		}
+	case RethinkDB:
+		d.broker = &rethinkdb.Broker{}
 	default:
 		return "", fmt.Errorf("Invalid broker %s", broker)
 	}
@@ -363,6 +367,8 @@ func (d *Daemon) newPeer(broker, host string) (peer, error) {
 			d.config.GoogleCloudProjectID,
 			d.config.GoogleCloudJSONKey,
 		)
+	case RethinkDB:
+		return rethinkdb.NewPeer(host)
 	default:
 		return nil, fmt.Errorf("Invalid broker: %s", broker)
 	}
